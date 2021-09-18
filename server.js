@@ -19,6 +19,9 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 const PORT =  process.env.PORT || 8080;
 app.listen(PORT, ()=>{
     debugLog(`Server listening on ${PORT}`)
@@ -26,9 +29,12 @@ app.listen(PORT, ()=>{
 
 
 /* GET home page. */
-app.get('/', function (req, res, next) {
-    res.send('Welcome to Express.js');
-});
+app.get('/',function(req,res){
+    res.set({
+        'Access-control-Allow-Origin': '*'
+        });
+    return res.render('index', {title: 'User signup'});
+})
 
 //navigate all api routes to index route
 app.use('/api', index);
