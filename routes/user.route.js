@@ -8,7 +8,8 @@ var userController = require('../controllers/user.controller');
 var verifySignUp = require('../middlewares/verifySignUp');
 
 //define the routes
-router.post('/save', [verifySignUp.checkDuplicateEmail], userController.saveUser)
-router.get('/list', userController.listUser)
+router.post('/save', [verifySignUp.checkDuplicateEmail], userController.saveUser);
+router.get('/list', userController.listUser);
+router.get('/:id', userController.getUserById);
 
 module.exports = router;

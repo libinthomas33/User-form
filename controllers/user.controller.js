@@ -38,3 +38,19 @@ exports.listUser = async (req, res) => {
         })
         .catch(err => { res.status(205).send(err) });
 }
+
+exports.getUserById = async (req, res) => {
+    let userId = req.params.id
+    if (!userId) {
+        return res.status(400).send({ 'message': 'User ID missing' })
+    }
+    await userModel.findById(userId)//fetch users from db
+        .then((user) => {
+            if (user) {//if success return users data
+                return res.status(200).send(user)
+            } else {//else return error message
+                return res.status(202).send('No user found')
+            }
+        })
+        .catch(err => { res.status(205).send(err) });
+}
