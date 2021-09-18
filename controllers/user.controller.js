@@ -47,7 +47,7 @@ exports.getUserById = async (req, res) => {
     await userModel.findById(userId)//fetch users from db
         .then((user) => {
             if (user) {//if success return users data
-                return res.status(200).send(user)
+                res.render('user-detail', {user: user});
             } else {//else return error message
                 return res.status(202).send('No user found')
             }
