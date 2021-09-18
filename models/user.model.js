@@ -25,9 +25,6 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  introduction: {
-    type: String
-  },
   experience: {
     type: Number
   },
