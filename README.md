@@ -1,8 +1,4 @@
 # User-form
-
-
-
-# User-form
 <p align="center">
   <h3 align="center">A form for collecting user information, and display the information</h3>
 
@@ -11,7 +7,7 @@
     <br />
     <a href="https://github.com/libinthomas33/User-form.git"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://github.com/libinthomas33/User-form.git/issues">Report Bug</a>
+    <a href="https://github.com/libinthomas33/User-form/issues">Report Bug</a>
   </p>
 </p>
 
@@ -83,13 +79,14 @@ Follow the below instructions for setting up the project locally.
    ```sh
    npm install
    ```
-4. Create .env file and fill the DB credentials.<br/>NB: DEBUG_MODE value should be changed to false, while going production and Testing API's using Jest
+4. Create .env file and fill the DB credentials.
    ```JS
     MONGO_HOST='ENTER YOUR MONGO HOST URL'
     MONGO_PORT='ENTER YOUR MONGO PORT'
     MONGO_DBNAME='ENTER YOUR MONGO DATABASE NAME'
     DEBUG_MODE=true
    ```
+NB: DEBUG_MODE value should be changed to false, while going production or Testing API's using Jest
 5. Install NPM packages
    ```sh
    npm start
