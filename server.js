@@ -6,6 +6,8 @@ const path = require('path');
 require('dotenv').config();
 
 //imports
+var index = require('./routes/index.route');
+const db = require('./config/db');
 const debugLog = require('./middlewares/debugLog');
 
 const app = express();
@@ -27,6 +29,9 @@ app.listen(PORT, ()=>{
 app.get('/', function (req, res, next) {
     res.send('Welcome to Express.js');
 });
+
+//navigate all api routes to index route
+app.use('/api', index);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
