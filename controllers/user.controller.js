@@ -31,7 +31,7 @@ exports.listUser = async (req, res) => {
     await userModel.find().select('firstname lastname email')//fetch all users from db
         .then((user) => {
             if (user) {//if success return all users
-                return res.status(200).send(user)
+                return res.render('user-list', { title: 'User List', userData: user});
             } else {//else return error message
                 return res.status(202).send('No user found')
             }
