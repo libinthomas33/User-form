@@ -3,7 +3,7 @@
   <head>
     <style>
       .card {
-        box-shadow: 0 4px 4px 0;
+        box-shadow: 0 1px 4px 0;
         max-width: 300px;
         margin: auto;
         text-align: center;
@@ -17,16 +17,34 @@
         color: grey;
         font-size: 15px;
       }
+      .home {
+        float: right;
+        margin-right: 406px;
+        margin-bottom: 10px;
+      }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h1><%=user.firstname %> <%=user.lastname %></h1>
-      <p class="title"><%=user.introduction %></p>
-      <p><span class="label">Email:</span> <%=user.email %></p>
-      <p><span class="label">Phone:</span> <%=user.phone %></p>
-      <p><span class="label">Experience:</span> <%=user.experience %></p>
-      <p><span class="label">Achievements:</span> <%=user.achievements %></p>
+    <div class="container">
+      <div class="row">
+        <p class="home">
+          <input type="button" onclick="location.href='/'" value="Home" />
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 card">
+          <h1><%=user.firstname %> <%=user.lastname %></h1>
+          <p class="title"><%=user.introduction %></p>
+          <p><span class="label">Email:</span> <%=user.email %></p>
+          <p><span class="label">Phone:</span> <%=user.phone %></p>
+          <p><span class="label">Experience:</span> <%=user.experience %></p>
+          <p>
+            <span class="label">Achievements:</span> <%=user.achievements %>
+          </p>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
     </div>
   </body>
 </html>
