@@ -14,3 +14,25 @@ describe('API Endpoints', () => {
     expect(res.statusCode).toEqual(200)
   })
 })
+
+describe('API Endpoints', () => {
+  it('should send 200 status code on successfull user registration', async () => {
+    const res = await request(app)
+      .post('/api/user/save')
+      .send({
+        email: "jesttest@email.com",
+        firstname: "jest_firstname",
+        lastname: "jest_firstname",
+        phone: 4394823948
+      })
+    expect(res.statusCode).toEqual(200)
+  })
+})
+
+describe('API Endpoints', () => {
+  it('should send 200 status code on successfull user fetch from DB', async () => {
+    const res = await request(app)
+      .get('/api/user/list')
+       expect(res.statusCode).toEqual(200)
+  })
+})
