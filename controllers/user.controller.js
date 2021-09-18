@@ -4,7 +4,7 @@ const userModel = require('../models/user.model');
 
 const debugLog = require('../middlewares/debugLog');
 
-exports.saveUser = (req, res) => {
+exports.saveUser = (req, res) => {//api to create user with unique email
     if (req.body.firstname && req.body.email && req.body.phone) {
         const user = new userModel({
             firstname: req.body.firstname ? req.body.firstname : '',
@@ -16,12 +16,25 @@ exports.saveUser = (req, res) => {
             achievements: req.body.achievements ? req.body.achievements : '',
         });
         user.save((userSaveErr, savedUser) => {
-            if (userSaveErr) {
+            if (userSaveErr) {//return error if failed to save
+                debugLog(`user save: ${userSaveErr}`)
                 return res.status(500).send(roleFetchErr);
             }
-            res.status(200).send({ message: 'User was registered successfully!' });
+            res.status(200).send({ message: 'User was registered successfully!' });//return success on user creation
         })
     } else {
-        res.status(401).send({ message: 'Bad Request!. Parameter missing.' })
+        res.status(401).send({ message: 'Bad Request!. Parameter missing.' })//return parameter missing error
     }
+}
+
+exports.listUser = async (req, res) => {
+    await userModel.find().select('firstname lastname email')//fetch all users from db
+        .then((user) => {
+            if (user) {//if success return all users
+                return res.status(200).send(user)
+            } else {//else return error message
+                return res.status(202).send('No user found')
+            }
+        })
+        .catch(err => { res.status(205).send(err) });
 }

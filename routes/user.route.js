@@ -9,5 +9,6 @@ var verifySignUp = require('../middlewares/verifySignUp');
 
 //define the routes
 router.post('/save', [verifySignUp.checkDuplicateEmail], userController.saveUser)
+router.get('/list', userController.listUser)
 
 module.exports = router;
