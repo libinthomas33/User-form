@@ -18,12 +18,12 @@ exports.saveUser = (req, res) => {//api to create user with unique email
         user.save((userSaveErr, savedUser) => {
             if (userSaveErr) {//return error if failed to save
                 debugLog(`user save: ${userSaveErr}`)
-                return res.status(500).send(roleFetchErr);
+                return res.render('index', { title: 'User signup', messages: { error: 'Failed to save the user details.', success: '' } });
             }
-            res.status(200).send({ message: 'User was registered successfully!' });//return success on user creation
+            res.render('index', { title: 'User signup', messages: { error: '', success: 'User was registered successfully!' } });//return success on user creation
         })
     } else {
-        res.status(401).send({ message: 'Bad Request!. Parameter missing.' })//return parameter missing error
+        res.render('index', { title: 'User signup', messages: { error: 'Bad Request!. Parameter missing.', success: '' } });//return parameter missing error
     }
 }
 
@@ -31,12 +31,12 @@ exports.listUser = async (req, res) => {
     await userModel.find().select('firstname lastname email')//fetch all users from db
         .then((user) => {
             if (user) {//if success return all users
-                return res.render('user-list', { title: 'User List', userData: user});
+                return res.render('user-list', { title: 'User List', userData: user });
             } else {//else return error message
-                return res.status(202).send('No user found')
+                return res.render('user-list', { title: 'User List', userData: [] });
             }
         })
-        .catch(err => { res.status(205).send(err) });
+        .catch(err => { return res.render('user-list', { title: 'User List', userData: [] }) })
 }
 
 exports.getUserById = async (req, res) => {
@@ -47,10 +47,10 @@ exports.getUserById = async (req, res) => {
     await userModel.findById(userId)//fetch users from db
         .then((user) => {
             if (user) {//if success return users data
-                res.render('user-detail', {user: user});
+                return res.render('user-detail', { user: user });
             } else {//else return error message
-                return res.status(202).send('No user found')
+                return res.render('user-detail', { user: {} });
             }
         })
-        .catch(err => { res.status(205).send(err) });
+        .catch(err => { return res.render('user-detail', { user: {} }) });
 }
