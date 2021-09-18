@@ -86,12 +86,12 @@ Follow the below instructions for setting up the project locally.
     MONGO_DBNAME='ENTER YOUR MONGO DATABASE NAME'
     DEBUG_MODE=true
    ```
-NB: DEBUG_MODE value should be changed to false, while going production or Testing API's using Jest
-5. Install NPM packages
+5. NB: DEBUG_MODE value should be changed to false, while going production or Testing API's using Jest
+6. Install NPM packages
    ```sh
    npm start
    ```
-6. For Testing API's, follow the below steps:-
+7. For Testing API's, follow the below steps:-
     ```sh
         npm install --save-dev jest
         npm install --save-dev supertest
